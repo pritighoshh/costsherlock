@@ -1,0 +1,188 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/admin",
+        "accountId": "123456789012",
+        "userName": "admin"
+      },
+      "eventTime": "2026-02-03T09:15:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutBucketLifecycleConfiguration",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.4.10",
+      "requestParameters": {
+        "bucketName": "prod-data-lake",
+        "lifecycleConfiguration": {
+          "rules": [
+            {
+              "id": "glacier-transition",
+              "status": "Disabled",
+              "transitions": []
+            }
+          ]
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:s3:::prod-data-lake",
+          "accountId": "123456789012",
+          "type": "AWS::S3::Bucket"
+        }
+      ],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/security-bot",
+        "accountId": "123456789012",
+        "userName": "security-bot"
+      },
+      "eventTime": "2026-02-03T16:44:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutBucketPolicy",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.5.99",
+      "requestParameters": {
+        "bucketName": "prod-data-lake",
+        "policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::123456789012:role/audit-role\"},\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::prod-data-lake/*\"}]}"
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:s3:::prod-data-lake",
+          "accountId": "123456789012",
+          "type": "AWS::S3::Bucket"
+        }
+      ],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678902",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/etl-worker",
+        "accountId": "123456789012",
+        "userName": "etl-worker"
+      },
+      "eventTime": "2026-02-04T11:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.6.33",
+      "requestParameters": {
+        "bucketName": "prod-data-lake",
+        "key": "exports/2026-02-04/report.parquet"
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:s3:::prod-data-lake/exports/2026-02-04/report.parquet",
+          "accountId": "123456789012",
+          "type": "AWS::S3::Object"
+        }
+      ],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678903",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/etl-worker",
+        "accountId": "123456789012",
+        "userName": "etl-worker"
+      },
+      "eventTime": "2026-02-03T14:22:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.6.33",
+      "requestParameters": {
+        "bucketName": "prod-data-lake",
+        "key": "raw/2026-02-03/batch-001.json"
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:s3:::prod-data-lake/raw/2026-02-03/batch-001.json",
+          "accountId": "123456789012",
+          "type": "AWS::S3::Object"
+        }
+      ],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678904",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/etl-worker",
+        "accountId": "123456789012",
+        "userName": "etl-worker"
+      },
+      "eventTime": "2026-02-05T10:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListObjects",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.6.33",
+      "requestParameters": {
+        "bucketName": "prod-data-lake",
+        "prefix": "exports/"
+      },
+      "resources": [],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678905",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/security-bot",
+        "accountId": "123456789012",
+        "userName": "security-bot"
+      },
+      "eventTime": "2026-02-01T13:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketAcl",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.5.99",
+      "requestParameters": {
+        "bucketName": "prod-data-lake"
+      },
+      "resources": [],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678906",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-alice",
+        "accountId": "123456789012",
+        "userName": "dev-alice"
+      },
+      "eventTime": "2026-02-04T09:30:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketLogging",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.22",
+      "requestParameters": {
+        "bucketName": "prod-data-lake"
+      },
+      "resources": [],
+      "eventID": "b2c3d4e5-f6a7-8901-bcde-f12345678907",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    }
+  ]
+}

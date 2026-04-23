@@ -1,0 +1,74 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-02-01T10:00:00Z",
+      "eventSource": "rds.amazonaws.com",
+      "eventName": "DescribeDBInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {
+        "dBInstanceIdentifier": "prod-postgres-01"
+      },
+      "resources": [],
+      "eventID": "d4e5f6a7-b8c9-0123-defa-234567890001",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-admin",
+        "accountId": "123456789012",
+        "userName": "ops-admin"
+      },
+      "eventTime": "2026-01-31T08:00:00Z",
+      "eventSource": "rds.amazonaws.com",
+      "eventName": "CreateDBSnapshot",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.7.12",
+      "requestParameters": {
+        "dBInstanceIdentifier": "prod-postgres-01",
+        "dBSnapshotIdentifier": "prod-postgres-01-snap-20260131"
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:rds:us-east-1:123456789012:snapshot:prod-postgres-01-snap-20260131",
+          "accountId": "123456789012",
+          "type": "AWS::RDS::DBSnapshot"
+        }
+      ],
+      "eventID": "d4e5f6a7-b8c9-0123-defa-234567890002",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-02-09T14:00:00Z",
+      "eventSource": "rds.amazonaws.com",
+      "eventName": "DescribeDBLogFiles",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {
+        "dBInstanceIdentifier": "prod-postgres-01"
+      },
+      "resources": [],
+      "eventID": "d4e5f6a7-b8c9-0123-defa-234567890003",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    }
+  ]
+}

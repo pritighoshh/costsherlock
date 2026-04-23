@@ -6,7 +6,9 @@
       "Bash(git commit -m ':*)",
       "Bash(bash:*)",
       "Bash(venv/Scripts/python.exe:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(python -c ':*)",
+      "Bash(venv/Scripts/python -m pytest tests/test_detective.py -v)"
     ]
   }
 }

@@ -1,0 +1,216 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/deploy-bot",
+        "accountId": "123456789012",
+        "userName": "deploy-bot"
+      },
+      "eventTime": "2026-01-29T23:15:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "RunInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.1.45",
+      "requestParameters": {
+        "instanceType": "c5.2xlarge",
+        "maxCount": 20,
+        "minCount": 20,
+        "imageId": "ami-0abcdef1234567890",
+        "subnetId": "subnet-0a1b2c3d4e5f6a7b8"
+      },
+      "responseElements": {
+        "instancesSet": {
+          "items": [
+            {"instanceId": "i-0a1b2c3d4e5f00001"},
+            {"instanceId": "i-0a1b2c3d4e5f00002"}
+          ]
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:ec2:us-east-1:123456789012:instance/i-0a1b2c3d4e5f00001",
+          "accountId": "123456789012",
+          "type": "AWS::EC2::Instance"
+        }
+      ],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567801",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-01-30T10:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {
+        "filterSet": {},
+        "instancesSet": {}
+      },
+      "resources": [],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567802",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-alice",
+        "accountId": "123456789012",
+        "userName": "dev-alice"
+      },
+      "eventTime": "2026-01-28T14:30:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "StopInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.22",
+      "requestParameters": {
+        "instancesSet": {
+          "items": [
+            {"instanceId": "i-0000000000000001"},
+            {"instanceId": "i-0000000000000002"}
+          ]
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:ec2:us-east-1:123456789012:instance/i-0000000000000001",
+          "accountId": "123456789012",
+          "type": "AWS::EC2::Instance"
+        }
+      ],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567803",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-bob",
+        "accountId": "123456789012",
+        "userName": "dev-bob"
+      },
+      "eventTime": "2026-01-30T08:20:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "ModifyInstanceAttribute",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.55",
+      "requestParameters": {
+        "instanceId": "i-0a1b2c3d4e5f00010",
+        "attribute": "userData",
+        "value": "IyEvYmluL2Jhc2gKZWNobyAidGFnLXVwZGF0ZSI="
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:ec2:us-east-1:123456789012:instance/i-0a1b2c3d4e5f00010",
+          "accountId": "123456789012",
+          "type": "AWS::EC2::Instance"
+        }
+      ],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567804",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-01-31T09:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {
+        "filterSet": {}
+      },
+      "resources": [],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567805",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-01-28T16:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeInstanceStatus",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567806",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/deploy-bot",
+        "accountId": "123456789012",
+        "userName": "deploy-bot"
+      },
+      "eventTime": "2026-01-25T11:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "TerminateInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.1.45",
+      "requestParameters": {
+        "instancesSet": {
+          "items": [
+            {"instanceId": "i-0000000000000099"}
+          ]
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:ec2:us-east-1:123456789012:instance/i-0000000000000099",
+          "accountId": "123456789012",
+          "type": "AWS::EC2::Instance"
+        }
+      ],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567807",
+      "readOnly": false,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-alice",
+        "accountId": "123456789012",
+        "userName": "dev-alice"
+      },
+      "eventTime": "2026-01-30T12:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeSecurityGroups",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.22",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "a1b2c3d4-e5f6-7890-abcd-ef1234567808",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    }
+  ]
+}

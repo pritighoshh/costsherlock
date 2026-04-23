@@ -1,0 +1,23 @@
+[
+  {
+    "anomaly_service": "Amazon EC2",
+    "anomaly_date": "2026-01-30",
+    "root_cause_category": "compute_overprovisioning",
+    "root_cause_event": "RunInstances",
+    "description": "20 c5.2xlarge instances launched by deploy-bot at 2026-01-29T23:15Z, adding ~$360/day in compute spend"
+  },
+  {
+    "anomaly_service": "Amazon S3",
+    "anomaly_date": "2026-02-04",
+    "root_cause_category": "storage_misconfiguration",
+    "root_cause_event": "PutBucketLifecycleConfiguration",
+    "description": "Glacier lifecycle transition disabled on prod-data-lake bucket by admin at 2026-02-03T09:15Z, preventing cold-tier offload of ~$180 of stored objects"
+  },
+  {
+    "anomaly_service": "Amazon CloudWatch",
+    "anomaly_date": "2026-02-07",
+    "root_cause_category": "logging_misconfiguration",
+    "root_cause_event": "PutMetricAlarm",
+    "description": "Log verbosity alarm set to DEBUG level by ops-admin at 2026-02-06T14:30Z, triggering high-frequency metric ingestion and log storage charges"
+  }
+]

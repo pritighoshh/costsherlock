@@ -1,0 +1,103 @@
+[
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "IAMUser",
+      "arn": "arn:aws:iam::123456789012:user/ops-admin",
+      "accountId": "123456789012",
+      "userName": "ops-admin"
+    },
+    "eventTime": "2026-02-06T14:30:00Z",
+    "eventSource": "monitoring.amazonaws.com",
+    "eventName": "PutMetricAlarm",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "10.0.7.12",
+    "requestParameters": {
+      "alarmName": "high-error-rate-debug",
+      "alarmDescription": "Tracks error rate with DEBUG verbosity enabled",
+      "metricName": "Errors",
+      "namespace": "AWS/Logs",
+      "statistic": "Sum",
+      "period": 60,
+      "threshold": 1.0,
+      "comparisonOperator": "GreaterThanOrEqualToThreshold",
+      "evaluationPeriods": 1,
+      "treatMissingData": "notBreaching"
+    },
+    "resources": [
+      {
+        "ARN": "arn:aws:cloudwatch:us-east-1:123456789012:alarm:high-error-rate-debug",
+        "accountId": "123456789012",
+        "type": "AWS::CloudWatch::Alarm"
+      }
+    ],
+    "eventID": "c3d4e5f6-a7b8-9012-cdef-123456789001",
+    "readOnly": false,
+    "eventType": "AwsApiCall"
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "IAMUser",
+      "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+      "accountId": "123456789012",
+      "userName": "ops-monitor"
+    },
+    "eventTime": "2026-02-07T09:00:00Z",
+    "eventSource": "monitoring.amazonaws.com",
+    "eventName": "DescribeAlarms",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "10.0.2.11",
+    "requestParameters": {
+      "stateValue": "ALARM"
+    },
+    "resources": [],
+    "eventID": "c3d4e5f6-a7b8-9012-cdef-123456789002",
+    "readOnly": true,
+    "eventType": "AwsApiCall"
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "IAMUser",
+      "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+      "accountId": "123456789012",
+      "userName": "ops-monitor"
+    },
+    "eventTime": "2026-02-05T16:00:00Z",
+    "eventSource": "monitoring.amazonaws.com",
+    "eventName": "ListMetrics",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "10.0.2.11",
+    "requestParameters": {
+      "namespace": "AWS/Logs"
+    },
+    "resources": [],
+    "eventID": "c3d4e5f6-a7b8-9012-cdef-123456789003",
+    "readOnly": true,
+    "eventType": "AwsApiCall"
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "IAMUser",
+      "arn": "arn:aws:iam::123456789012:user/dev-alice",
+      "accountId": "123456789012",
+      "userName": "dev-alice"
+    },
+    "eventTime": "2026-02-08T11:00:00Z",
+    "eventSource": "monitoring.amazonaws.com",
+    "eventName": "GetMetricStatistics",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "10.0.3.22",
+    "requestParameters": {
+      "namespace": "AWS/Logs",
+      "metricName": "Errors",
+      "period": 3600
+    },
+    "resources": [],
+    "eventID": "c3d4e5f6-a7b8-9012-cdef-123456789004",
+    "readOnly": true,
+    "eventType": "AwsApiCall"
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-alice",
+        "accountId": "123456789012",
+        "userName": "dev-alice"
+      },
+      "eventTime": "2026-01-15T09:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeImages",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.22",
+      "requestParameters": {"ownersSet": {"items": [{"owner": "self"}]}},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900001",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-bob",
+        "accountId": "123456789012",
+        "userName": "dev-bob"
+      },
+      "eventTime": "2026-01-18T11:30:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListBuckets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.55",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900002",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-01-20T08:45:00Z",
+      "eventSource": "lambda.amazonaws.com",
+      "eventName": "ListFunctions20150331",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900003",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-alice",
+        "accountId": "123456789012",
+        "userName": "dev-alice"
+      },
+      "eventTime": "2026-01-22T14:20:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeVpcs",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.22",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900004",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-01-24T10:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketVersioning",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {"bucketName": "prod-data-lake"},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900005",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-bob",
+        "accountId": "123456789012",
+        "userName": "dev-bob"
+      },
+      "eventTime": "2026-01-26T15:00:00Z",
+      "eventSource": "rds.amazonaws.com",
+      "eventName": "DescribeDBParameterGroups",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.55",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900006",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-01-30T06:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeSubnets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900007",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/etl-worker",
+        "accountId": "123456789012",
+        "userName": "etl-worker"
+      },
+      "eventTime": "2026-02-02T08:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketEncryption",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.6.33",
+      "requestParameters": {"bucketName": "prod-data-lake"},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900008",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-alice",
+        "accountId": "123456789012",
+        "userName": "dev-alice"
+      },
+      "eventTime": "2026-02-04T13:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeAvailabilityZones",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.22",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900009",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-02-06T08:00:00Z",
+      "eventSource": "monitoring.amazonaws.com",
+      "eventName": "DescribeAlarmHistory",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {"alarmName": "high-error-rate-debug"},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900010",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/dev-bob",
+        "accountId": "123456789012",
+        "userName": "dev-bob"
+      },
+      "eventTime": "2026-02-07T16:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketLocation",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.3.55",
+      "requestParameters": {"bucketName": "prod-data-lake"},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900011",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::123456789012:user/ops-monitor",
+        "accountId": "123456789012",
+        "userName": "ops-monitor"
+      },
+      "eventTime": "2026-02-09T09:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeRouteTables",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.0.2.11",
+      "requestParameters": {},
+      "resources": [],
+      "eventID": "e5f6a7b8-c9d0-1234-efab-345678900012",
+      "readOnly": true,
+      "eventType": "AwsApiCall"
+    }
+  ]
+}
