@@ -1624,6 +1624,12 @@ elif view == "Feedback":
         feedback["actual_root_cause"] = actual_cause
 
         if st.button("📤 Submit Feedback", type="primary"):
+            # Persist feedback to data/feedback/<date>_<service>.json.
+            # File naming: ISO date + slugified service name ensures one file
+            # per anomaly. Existing files are overwritten so re-submissions
+            # update rather than duplicate the record.
+            # Files are consumed by evaluation/metrics.py (human_audit_pass_rate)
+            # and can be re-ingested into ChromaDB to close the feedback loop.
             try:
                 feedback_dir = _ROOT / "data" / "feedback"
                 feedback_dir.mkdir(parents=True, exist_ok=True)
