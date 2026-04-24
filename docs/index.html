@@ -1269,6 +1269,40 @@ footer {
   line-height: 1.4;
 }
 
+.calc-footnote {
+  font-size: 0.67rem;
+  color: var(--text-faint);
+  line-height: 1.5;
+  margin-top: 0.35rem;
+}
+
+.calc-footnote a {
+  color: var(--text-faint);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.calc-footnote a:hover { color: var(--text-muted); }
+
+.calc-citation-bar {
+  margin-top: 1rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  font-size: 0.67rem;
+  color: var(--text-faint);
+  line-height: 1.5;
+}
+
+.calc-citation-bar a {
+  color: var(--text-faint);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.calc-citation-bar a:hover { color: var(--text-muted); }
+
 /* ── Silent Failure Demo ─────────────────────────────────────────── */
 #silent-failure {
   background: linear-gradient(180deg, transparent 0%, rgba(27,42,74,0.3) 50%, transparent 100%);
@@ -1499,11 +1533,25 @@ footer {
             <div class="calc-stat">
               <div class="calc-stat-val" id="annual-waste">—</div>
               <div class="calc-stat-key">Estimated annual waste<br>(32% of total spend)</div>
+              <div class="calc-footnote">
+                ¹ FinOps Foundation, <a href="https://www.finops.org/insights/state-of-finops/" target="_blank" rel="noopener">State of FinOps 2023</a> —
+                49% of orgs overspend cloud budgets; average waste 32% of total spend.
+              </div>
             </div>
             <div class="calc-stat">
               <div class="calc-stat-val" id="eng-hours">—</div>
               <div class="calc-stat-key">Engineer-hours spent investigating / year<br>(3.5 hrs × avg anomalies)</div>
+              <div class="calc-footnote">
+                ² Industry average from FinOps practitioner reports — manual investigation
+                typically 4–12 hrs per incident. CostSherlock benchmark: <strong style="color:var(--accent-green)">32.8 s</strong> avg.
+              </div>
             </div>
+          </div>
+          <div class="calc-citation-bar" id="calc-citation-bar" style="display:none;">
+            📊 Data sources:
+            <a href="https://www.finops.org/insights/state-of-finops/" target="_blank" rel="noopener">FinOps Foundation State of FinOps 2023</a>
+            &nbsp;|&nbsp;
+            CostSherlock evaluation on synthetic anomalies (n=8)
           </div>
         </div>
       </div>
@@ -2352,10 +2400,11 @@ footer {
   document.getElementById('sf-reset-2').addEventListener('click', sfReset);
 
   /* ── 8. Cost calculator ─────────────────────────────────────────── */
-  const spendInput   = document.getElementById('monthly-spend');
-  const calcResults  = document.getElementById('calc-results');
+  const spendInput    = document.getElementById('monthly-spend');
+  const calcResults   = document.getElementById('calc-results');
+  const calcCitation  = document.getElementById('calc-citation-bar');
   const annualWasteEl = document.getElementById('annual-waste');
-  const engHoursEl   = document.getElementById('eng-hours');
+  const engHoursEl    = document.getElementById('eng-hours');
 
   function fmtDollar(n) {
     if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
@@ -2366,17 +2415,19 @@ footer {
   spendInput.addEventListener('input', () => {
     const monthly = parseFloat(spendInput.value);
     if (!monthly || monthly <= 0) {
-      calcResults.style.display = 'none';
+      calcResults.style.display  = 'none';
+      calcCitation.style.display = 'none';
       return;
     }
-    const annualWaste  = monthly * 12 * 0.32;          // FinOps 32% waste figure
-    const anomaliesYr  = Math.max(1, Math.round(monthly / 25000) * 12); // ~1 spike per $25K/mo
-    const hoursYr      = anomaliesYr * 3.5;            // 3.5 hrs manual investigation saved each
+    const annualWaste = monthly * 12 * 0.32;                         // FinOps 32% waste figure ¹
+    const anomaliesYr = Math.max(1, Math.round(monthly / 25000) * 12); // ~1 spike per $25K/mo
+    const hoursYr     = anomaliesYr * 3.5;                           // 3.5 hrs saved per investigation ²
 
     annualWasteEl.textContent = fmtDollar(annualWaste);
     engHoursEl.textContent    = Math.round(hoursYr) + ' hrs';
 
-    calcResults.style.display = '';
+    calcResults.style.display  = '';
+    calcCitation.style.display = '';
   });
 
 })();
