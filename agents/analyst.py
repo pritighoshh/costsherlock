@@ -61,7 +61,10 @@ ABSOLUTE RULES:
    Similarly: StopInstances on 2 t3.micro ($0.0104/hr each) cannot explain a $350/day
    EC2 spike — it must be ruled out as WRONG_MAGNITUDE.
 
-4. If no suspect plausibly explains the delta, say "INSUFFICIENT_EVIDENCE."
+4. If no suspect plausibly explains the delta, set root_cause to "INSUFFICIENT_EVIDENCE" and
+   confidence to 0.0 — but STILL assign the best-matching category from the valid list based
+   on the affected service and observed events. For example: CloudWatch anomaly + alarm events
+   → use "logging_misconfiguration". Do NOT use "unknown" unless no valid category fits at all.
 5. For every suspect NOT selected, explain why in ruled_out with a category.
 6. Assign confidence (0.0-1.0) based on: evidence strength, cost math match, mechanism clarity.
 
@@ -86,6 +89,21 @@ OUTPUT: Valid JSON only, no markdown fences:
       "category": "compute_overprovisioning"
     }
   ],
+
+VALID CATEGORY VALUES — you MUST use one of these exact strings for the "category" field:
+  compute_overprovisioning       — too many/large EC2 instances launched
+  compute_misconfiguration       — wrong instance type, AZ, or tenancy selected
+  storage_misconfiguration       — wrong S3 storage class, lifecycle, or versioning
+  storage_overprovisioning       — excessive EBS volume size or snapshot retention
+  database_misconfiguration      — wrong RDS instance class, Multi-AZ, or backup config
+  network_misconfiguration       — unexpected NAT Gateway, data transfer, or VPC flow
+  logging_misconfiguration       — CloudTrail, CloudWatch Logs, or S3 access-log misconfiguration
+  lambda_misconfiguration        — excessive Lambda memory, timeout, or invocation rate
+  data_transfer_spike            — unexpected inter-region or internet data transfer
+  scheduled_job_runaway          — cron/Auto Scaling action that repeated unexpectedly
+  security_event                 — IAM change or policy alteration with cost side-effect
+  unknown                        — no category fits; use with INSUFFICIENT_EVIDENCE
+
   "ruled_out": [
     {
       "event_name": "PutBucketPolicy",

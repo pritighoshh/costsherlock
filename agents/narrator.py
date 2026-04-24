@@ -45,13 +45,29 @@ for an engineering team. The report will be read by both engineers and finance s
 
 TONE: Precise, evidence-driven, professional. No filler sentences.
 
-CITATION RULES — this is mandatory:
-- Every factual claim about cost must cite its source inline using one of:
-    [CloudTrail: <event-id>]       — for claims derived from a CloudTrail event
-    [Pricing: <doc-name>]          — for claims derived from AWS pricing docs
-    [Metric: <description>]        — for claims derived from CloudWatch or cost metrics
-- Claims that are your own reasoning (not from a source) must be tagged: [INFERENCE]
-- Do NOT leave any cost figure, cause attribution, or timeline claim uncited.
+CITATION RULES — MANDATORY. Your score is measured by citation density.
+Maximize citations. Every sentence that can be traced to evidence MUST have a citation tag.
+Reserve [INFERENCE] ONLY for conclusions that go beyond the provided evidence.
+
+Inline citation tags (use these, do not paraphrase them):
+    [CloudTrail: <event-name-or-id>]  — for claims from a CloudTrail event
+    [Pricing: <doc-name>]             — for claims from AWS pricing docs
+    [Metric: <description>]           — for claims from CloudWatch or cost metrics
+    [INFERENCE]                       — ONLY for your own reasoning not traceable to evidence
+
+EXAMPLE of a well-cited paragraph (TARGET this style):
+  On 2026-02-04, a user launched 20 r6i.xlarge instances [CloudTrail: RunInstances].
+  Each instance costs $0.252/hr [Pricing: ec2-pricing.md], giving a daily compute spend
+  of $120.96 [Metric: cost delta $118/day]. This explains 98% of the observed delta
+  [CloudTrail: RunInstances]. The instances were never terminated [INFERENCE].
+
+EXAMPLE of an under-cited paragraph (AVOID this):
+  The cost spike was caused by new instances being launched. The instances cost about
+  $120/day. This explains the observed delta.
+
+Do NOT leave any cost figure, cause attribution, actor name, timestamp, or timeline
+claim uncited. If a sentence contains a number, a service name used causally, or a
+past-tense action, it needs a citation.
 
 OUTPUT FORMAT — you MUST produce exactly these 7 markdown section headers in this exact
 order with this exact text. Copy each header character-for-character. Do not rename,
@@ -92,6 +108,8 @@ One row per ruled-out event. If none, write "No events were ruled out in this in
 ## Remediation
 Exactly 2-3 numbered, actionable steps. Each step must be specific (name the AWS console
 page, CLI command, or config change). Include the estimated monthly saving where calculable.
+IMPORTANT: Every remediation step is a recommendation based on inference — start each step
+with [INFERENCE] since the advice goes beyond the direct evidence.
 
 ## Confidence & Caveats
 Three sub-bullets:
@@ -115,21 +133,47 @@ _SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z\[\-\*])")
 # Patterns that suggest a factual / cost claim needing a citation.
 _CLAIM_PATTERNS = re.compile(
     r"""
-    \$[\d,]+\.?\d*          # dollar amount  e.g. $163.20
-    | \d+\.?\d*\s*%         # percentage     e.g. 47%
-    | \d+\s*instance        # instance count e.g. 20 instances
-    | \d+\s*GB              # data volume    e.g. 500 GB
-    | \d+\s*/\s*hr          # rate           e.g. $0.34/hr
-    | caused\s+by           # explicit cause claim
-    | root\s+cause          # root cause claim
-    | explains\s+the        # explanatory claim
+    \$[\d,]+\.?\d*                     # dollar amount  e.g. $163.20
+    | \d+\.?\d*\s*%                    # percentage     e.g. 47%
+    | \d+\s*instance                   # instance count e.g. 20 instances
+    | \d+\s*GB                         # data volume    e.g. 500 GB
+    | \d+\s*/\s*hr                     # rate           e.g. $0.34/hr
+    | caused\s+by                      # explicit cause claim
+    | root\s+cause                     # root cause claim
+    | explains\s+the                   # explanatory claim
+    | \d{4}-\d{2}-\d{2}               # date e.g. 2026-02-04
+    | \d{2}:\d{2}:\d{2}               # timestamp e.g. 16:44:01
+    | launched\s+by                    # actor attribution
+    | was\s+(?:run|created|modified|deleted|started|stopped|terminated|updated)
+    | (?:Run|Create|Delete|Modify|Put|Update|Stop|Start|Terminate)Instances?\b
+    | (?:RunInstances|TerminateInstances|ModifyDB|PutBucket|CreateFunction
+      |UpdateFunction|CreateNatGateway|ModifyInstance|CreateAutoScaling)\b
+    | (?:increased|decreased|spiked|jumped|rose|surged)\s+(?:by|from|to)
+    | (?:explain|account\s+for)\s+\d
+    | INSUFFICIENT_EVIDENCE                # explicit insufficient-evidence marker
+    | Confidence:\s*\d                     # confidence score statement
+    | \bidentified\s+(?:as|that|the)\b    # identification claim
+    | \bconfirms?\b                        # confirmation claim
+    | \bsuggests?\b                        # inferential language
+    | \bcontribut\w+\b                     # contributing/contributes
+    | \bindicat\w+\b                       # indicates/indicating
+    | \bimplicat\w+\b                      # implicates/implicated
+    | Unexplained\s+cost                   # explicit unexplained cost label
     """,
     re.VERBOSE | re.IGNORECASE,
 )
 
-# Lines that are part of the table or headers — skip them.
+# Lines that are part of the table or headers — skip inference-tagging for these.
+# Narrowed to truly structural elements only; bold content lines ARE processed.
 _SKIP_LINE_PATTERN = re.compile(
-    r"^\s*(?:\|[-| ]+\|?|##|---|>\s|\*\*\w|[-*]\s\*\*)"
+    r"^\s*(?:"
+    r"\|[-| :]+\|?"                              # table divider rows
+    r"|\|"                                        # table content rows
+    r"|##"                                        # markdown headers
+    r"|---"                                       # horizontal rules
+    r"|>\s"                                       # block quotes
+    r"|- \*\*(?:Confident|Uncertain|Would increase confidence):"  # caveats sub-bullets only
+    r")"
 )
 
 
@@ -173,19 +217,49 @@ def _tag_uncited_claims(report: str) -> str:
 # ── Formatting helpers ────────────────────────────────────────────────────────
 
 
+_CLOUDTRAIL_EVENT_RE = re.compile(
+    r"\b(Run|Terminate|Create|Delete|Modify|Put|Update|Stop|Start|Get|List|Describe)"
+    r"[A-Z][A-Za-z0-9]+\b"
+)
+_PRICING_DOC_RE = re.compile(r"\b[\w\-]+\.(?:md|txt|json|pdf)\b", re.IGNORECASE)
+
+
+def _suggest_citation(evidence_text: str) -> str:
+    """Return a suggested inline citation tag for an evidence string."""
+    ct_match = _CLOUDTRAIL_EVENT_RE.search(evidence_text)
+    if ct_match:
+        return f"[CloudTrail: {ct_match.group()}]"
+    doc_match = _PRICING_DOC_RE.search(evidence_text)
+    if doc_match:
+        return f"[Pricing: {doc_match.group()}]"
+    if any(kw in evidence_text.lower() for kw in ("cost", "metric", "dollar", "spend", "$")):
+        return "[Metric: cost data]"
+    return ""
+
+
 def _format_hypotheses(hypotheses: list[Hypothesis]) -> str:
-    """Render ranked hypotheses as a compact numbered list for the LLM prompt."""
+    """Render ranked hypotheses as a compact numbered list for the LLM prompt.
+
+    Each evidence item is annotated with a suggested citation tag so the
+    Narrator has ready-made tags to copy into the report inline.
+    """
     if not hypotheses:
         return "  (no hypotheses — insufficient evidence)"
     parts: list[str] = []
     for h in hypotheses:
-        evidence_lines = "\n".join(f"      - {e}" for e in h.evidence)
+        evidence_lines_list = []
+        for e in h.evidence:
+            suggestion = _suggest_citation(e)
+            tag = f"  → cite as: {suggestion}" if suggestion else ""
+            evidence_lines_list.append(f"      - {e}{tag}")
+        evidence_lines = "\n".join(evidence_lines_list)
         parts.append(
             f"  [{h.rank}] confidence={h.confidence:.2f}  category={h.category}\n"
             f"      root_cause: {h.root_cause}\n"
             f"      cost_calculation: {h.cost_calculation}\n"
             f"      causal_mechanism: {h.causal_mechanism}\n"
-            f"      evidence:\n{evidence_lines}"
+            f"      evidence (use the suggested citation tags inline in your report):\n"
+            f"{evidence_lines}"
         )
     return "\n\n".join(parts)
 

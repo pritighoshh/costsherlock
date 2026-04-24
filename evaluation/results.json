@@ -1,0 +1,138 @@
+{
+  "metrics": {
+    "causal_attribution_accuracy": {
+      "accuracy": 1.0,
+      "correct_count": 3,
+      "total": 3,
+      "per_anomaly": [
+        {
+          "service": "Amazon S3",
+          "date": "2026-02-04",
+          "expected": "storage_misconfiguration",
+          "actual": "storage_misconfiguration",
+          "correct": true
+        },
+        {
+          "service": "Amazon EC2",
+          "date": "2026-01-30",
+          "expected": "compute_overprovisioning",
+          "actual": "compute_overprovisioning",
+          "correct": true
+        },
+        {
+          "service": "Amazon CloudWatch",
+          "date": "2026-02-07",
+          "expected": "logging_misconfiguration",
+          "actual": "logging_misconfiguration",
+          "correct": true
+        }
+      ],
+      "target": 0.8,
+      "pass": true
+    },
+    "evidence_recall": {
+      "average_recall": 1.0,
+      "per_anomaly": [
+        {
+          "service": "Amazon S3",
+          "date": "2026-02-04",
+          "gt_event": "PutBucketLifecycleConfiguration",
+          "found": true,
+          "recall": 1.0
+        },
+        {
+          "service": "Amazon EC2",
+          "date": "2026-01-30",
+          "gt_event": "RunInstances",
+          "found": true,
+          "recall": 1.0
+        },
+        {
+          "service": "Amazon CloudWatch",
+          "date": "2026-02-07",
+          "gt_event": "PutMetricAlarm",
+          "found": true,
+          "recall": 1.0
+        }
+      ],
+      "target": 0.85,
+      "pass": true
+    },
+    "faithfulness_score": {
+      "average_score": 0.9298,
+      "method": "citation_ratio",
+      "per_report": [
+        {
+          "service": "Amazon S3",
+          "date": "2026-02-04",
+          "score": 1.0,
+          "method": "citation_ratio"
+        },
+        {
+          "service": "Amazon EC2",
+          "date": "2026-01-30",
+          "score": 0.7895,
+          "method": "citation_ratio"
+        },
+        {
+          "service": "Amazon CloudWatch",
+          "date": "2026-02-07",
+          "score": 1.0,
+          "method": "citation_ratio"
+        }
+      ],
+      "target": 0.9,
+      "pass": true
+    },
+    "time_to_explanation": {
+      "per_anomaly": [
+        {
+          "service": "Amazon S3",
+          "date": "2026-02-04",
+          "elapsed_seconds": 33.6
+        },
+        {
+          "service": "Amazon EC2",
+          "date": "2026-01-30",
+          "elapsed_seconds": 34.19
+        },
+        {
+          "service": "Amazon CloudWatch",
+          "date": "2026-02-07",
+          "elapsed_seconds": 30.59
+        }
+      ],
+      "average_seconds": 32.79,
+      "max_seconds": 34.19,
+      "target": 300.0,
+      "pass": true
+    },
+    "human_audit_pass_rate": {
+      "pass_rate": 0.0,
+      "actionable_count": 0,
+      "total_feedback": 0,
+      "target": 0.7,
+      "pass": false,
+      "note": "No feedback files yet \u2014 expected until users submit ratings."
+    },
+    "time_to_insight": {
+      "description": "Manual UX test: a non-engineer is given the CostSherlock dashboard and asked to identify the root cause of the highest-severity anomaly. The time from dashboard open to verbal root-cause identification is recorded. Target: < 3 minutes (180 s). Run at least 5 participants and report median time.",
+      "target": "< 3 minutes (manual test)",
+      "pass": null
+    },
+    "feedback_loop_quality": {
+      "methodology": "1. Run the pipeline on synthetic data and record baseline accuracy. 2. Collect human feedback corrections via the dashboard Feedback view. 3. Ingest corrections as new documents into the ChromaDB RAG store. 4. Re-run the pipeline on the same anomalies. 5. Measure accuracy delta between run 1 and run 2. 6. A positive delta indicates the feedback loop is improving quality.",
+      "feedback_count": 0,
+      "corrections_available": 0,
+      "status": "No feedback collected yet \u2014 submit ratings via the dashboard Feedback view.",
+      "pass": null
+    }
+  },
+  "meta": {
+    "reports_evaluated": 3,
+    "estimated_api_cost_usd": 0.079956,
+    "total_eval_seconds": 139.64,
+    "ground_truth_path": "C:\\Users\\Vatsal\\Documents\\costsherlock\\data\\synthetic\\ground_truth.json",
+    "feedback_dir": "C:\\Users\\Vatsal\\Documents\\costsherlock\\data\\feedback"
+  }
+}

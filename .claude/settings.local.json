@@ -27,7 +27,12 @@
       "Bash(venv/Scripts/streamlit --version)",
       "Bash(venv/Scripts/streamlit run:*)",
       "Bash(mkdir -p ~/.streamlit)",
-      "Read(//c/Users/Vatsal/.streamlit/**)"
+      "Read(//c/Users/Vatsal/.streamlit/**)",
+      "Bash(git push:*)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(python:*)",
+      "Bash(wmic process:*)",
+      "Bash(cmd:*)"
     ]
   }
 }
