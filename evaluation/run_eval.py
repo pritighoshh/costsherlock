@@ -49,7 +49,7 @@ FEEDBACK_DIR = str(_ROOT / "data" / "feedback")
 RESULTS_PATH = _ROOT / "evaluation" / "results.json"
 REPORTS_DIR = str(_ROOT / "reports" / "eval")
 
-# Rough cost model for Sonnet (claude-sonnet-4-20250514)
+# Rough cost model for Sonnet (claude-sonnet-4-6)
 _INPUT_COST_PER_TOKEN = 3.00 / 1_000_000
 _OUTPUT_COST_PER_TOKEN = 15.00 / 1_000_000
 _CHARS_PER_TOKEN = 4.0
@@ -401,6 +401,7 @@ def _load_cached_reports() -> list[InvestigationReport]:
 
 
 def main() -> None:
+    """Entry point: parse CLI args, run the pipeline, compute and display all 7 metrics."""
     args = _build_arg_parser().parse_args()
 
     if hasattr(sys.stdout, "reconfigure"):

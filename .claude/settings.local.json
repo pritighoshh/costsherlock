@@ -32,7 +32,8 @@
       "Bash(echo \"exit: $?\")",
       "Bash(python:*)",
       "Bash(wmic process:*)",
-      "Bash(cmd:*)"
+      "Bash(cmd:*)",
+      "Bash(echo \"exit:$?\")"
     ]
   }
 }

@@ -39,7 +39,7 @@ CLOUDTRAIL  = "data/synthetic/demo_cloudtrail"
 OUTPUT_DIR  = Path("reports/demo")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# ── Approximate token costs for claude-sonnet-4-20250514 ─────────────────────
+# ── Approximate token costs for claude-sonnet-4-6 ─────────────────────
 # $3.00 / 1M input tokens,  $15.00 / 1M output tokens
 _INPUT_COST_PER_TOKEN  = 3.00 / 1_000_000
 _OUTPUT_COST_PER_TOKEN = 15.00 / 1_000_000
@@ -72,6 +72,7 @@ def _confidence_bar(conf: float, width: int = 10) -> str:
 # ── Main demo ─────────────────────────────────────────────────────────────────
 
 def run_demo() -> None:
+    """Run the full CostSherlock pipeline on bundled synthetic data and print a Rich summary."""
     demo_start = time.monotonic()
 
     # ── Header panel ─────────────────────────────────────────────────────────

@@ -59,7 +59,7 @@
       "pass": true
     },
     "faithfulness_score": {
-      "average_score": 0.9298,
+      "average_score": 0.9333,
       "method": "citation_ratio",
       "per_report": [
         {
@@ -71,7 +71,7 @@
         {
           "service": "Amazon EC2",
           "date": "2026-01-30",
-          "score": 0.7895,
+          "score": 0.8,
           "method": "citation_ratio"
         },
         {
@@ -89,21 +89,21 @@
         {
           "service": "Amazon S3",
           "date": "2026-02-04",
-          "elapsed_seconds": 33.6
+          "elapsed_seconds": 30.77
         },
         {
           "service": "Amazon EC2",
           "date": "2026-01-30",
-          "elapsed_seconds": 34.19
+          "elapsed_seconds": 36.56
         },
         {
           "service": "Amazon CloudWatch",
           "date": "2026-02-07",
-          "elapsed_seconds": 30.59
+          "elapsed_seconds": 30.46
         }
       ],
-      "average_seconds": 32.79,
-      "max_seconds": 34.19,
+      "average_seconds": 32.6,
+      "max_seconds": 36.56,
       "target": 300.0,
       "pass": true
     },
@@ -130,8 +130,8 @@
   },
   "meta": {
     "reports_evaluated": 3,
-    "estimated_api_cost_usd": 0.079956,
-    "total_eval_seconds": 139.64,
+    "estimated_api_cost_usd": 0.076626,
+    "total_eval_seconds": 111.27,
     "ground_truth_path": "C:\\Users\\Vatsal\\Documents\\costsherlock\\data\\synthetic\\ground_truth.json",
     "feedback_dir": "C:\\Users\\Vatsal\\Documents\\costsherlock\\data\\feedback"
   }

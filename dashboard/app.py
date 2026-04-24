@@ -34,7 +34,7 @@ from pipeline import _extract_remediation  # noqa: E402
 # ── Constants ─────────────────────────────────────────────────────────────────
 DEMO_COST_PATH = str(_ROOT / "data" / "synthetic" / "demo_cost.json")
 DEMO_CLOUDTRAIL_DIR = str(_ROOT / "data" / "synthetic" / "demo_cloudtrail")
-MODEL_NAME = "claude-sonnet-4-20250514"
+MODEL_NAME = "claude-sonnet-4-6"
 _INPUT_COST_PER_TOKEN = 3.00 / 1_000_000
 _OUTPUT_COST_PER_TOKEN = 15.00 / 1_000_000
 _CHARS_PER_TOKEN = 4.0
