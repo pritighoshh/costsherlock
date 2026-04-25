@@ -87,19 +87,19 @@
       "pass": true
     },
     "faithfulness_score": {
-      "average_score": 0.8694,
+      "average_score": 0.9846,
       "method": "citation_ratio",
       "per_report": [
         {
           "service": "Amazon VPC",
           "date": "2026-02-11",
-          "score": 0.8125,
+          "score": 1.0,
           "method": "citation_ratio"
         },
         {
           "service": "Amazon EBS",
           "date": "2026-02-24",
-          "score": 0.8077,
+          "score": 1.0,
           "method": "citation_ratio"
         },
         {
@@ -111,49 +111,49 @@
         {
           "service": "Amazon S3",
           "date": "2026-02-27",
-          "score": 0.875,
+          "score": 0.9231,
           "method": "citation_ratio"
         },
         {
           "service": "Amazon S3",
           "date": "2026-02-04",
-          "score": 0.8519,
+          "score": 1.0,
           "method": "citation_ratio"
         }
       ],
       "target": 0.9,
-      "pass": false
+      "pass": true
     },
     "time_to_explanation": {
       "per_anomaly": [
         {
           "service": "Amazon VPC",
           "date": "2026-02-11",
-          "elapsed_seconds": 60.22
+          "elapsed_seconds": 53.97
         },
         {
           "service": "Amazon EBS",
           "date": "2026-02-24",
-          "elapsed_seconds": 65.66
+          "elapsed_seconds": 71.61
         },
         {
           "service": "AWS Lambda",
           "date": "2026-02-21",
-          "elapsed_seconds": 85.41
+          "elapsed_seconds": 81.22
         },
         {
           "service": "Amazon S3",
           "date": "2026-02-27",
-          "elapsed_seconds": 48.43
+          "elapsed_seconds": 53.78
         },
         {
           "service": "Amazon S3",
           "date": "2026-02-04",
-          "elapsed_seconds": 57.38
+          "elapsed_seconds": 69.83
         }
       ],
-      "average_seconds": 63.42,
-      "max_seconds": 85.41,
+      "average_seconds": 66.08,
+      "max_seconds": 81.22,
       "target": 300.0,
       "pass": true
     },
@@ -180,8 +180,8 @@
   },
   "meta": {
     "reports_evaluated": 5,
-    "estimated_api_cost_usd": 0.25023,
-    "total_eval_seconds": 367.22,
+    "estimated_api_cost_usd": 0.257832,
+    "total_eval_seconds": 352.23,
     "ground_truth_path": "C:\\Users\\Vatsal\\Documents\\costsherlock\\data\\synthetic\\ground_truth.json",
     "feedback_dir": "C:\\Users\\Vatsal\\Documents\\costsherlock\\data\\feedback"
   }
